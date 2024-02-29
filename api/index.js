@@ -5,12 +5,18 @@ import postRoutes from "./routes/posts.js";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import multer from "multer";
+import cors from "cors";
 
 const app = express();
 
 dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "../client/public/upload");
